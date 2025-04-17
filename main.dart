@@ -1,46 +1,31 @@
+import 'package:lalacoffe_shop/dashboard.dart';
+import 'package:lalacoffe_shop/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(title: 'Navigation Basics', home: FirstRoute()));
+  runApp(const MyApp());
 }
 
-class FirstRoute extends StatelessWidget {
-  const FirstRoute({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('First Route')),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Open route'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SecondRoute()),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Second Route')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'COFFE SHOP',
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            background: Colors.white,
+            seedColor: const Color.fromARGB(255, 255, 255, 255),
+          ),
+          useMaterial3: true),
+      initialRoute: SplashScreen.routeName,
+      routes: {
+        SplashScreen.routeName: (context) => const SplashScreen(),
+        Dashboard_page.routeName: (context) => const Dashboard_page(),
+      },
     );
   }
 }
